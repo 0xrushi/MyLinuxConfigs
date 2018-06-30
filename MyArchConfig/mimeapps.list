@@ -1,0 +1,22 @@
+[Added Associations]
+application/x-theme=panel-desktop-handler.desktop;
+image/png=feh.desktop;
+text/plain=mousepad.desktop;
+video/x-flv=vlc.desktop;org.xfce.Parole.desktop;
+video/mp4=vlc.desktop;
+text/markdown=mousepad.desktop;
+video/x-matroska=vlc.desktop;
+image/jpeg=feh.desktop;
+text/html=firefox.desktop;
+application/zip=org.gnome.FileRoller.desktop;
+text/x-python=sublime_text_3.desktop;mousepad.desktop;
+application/x-shellscript=sublime_text_3.desktop;
+text/csv=mousepad.desktop;sublime_text_3.desktop;
+application/javascript=mousepad.desktop;
+text/x-log=mousepad.desktop;
+application/vnd.rar=org.gnome.FileRoller.desktop;
+application/pdf=mupdf.desktop;libreoffice-draw.desktop;wine-extension-pdf.desktop;
+text/x-java=vim.desktop;
+application/xml=wine-extension-txt.desktop;wine-extension-xml.desktop;
+audio/mpeg=vlc.desktop;
+text/x-csrc=vim.desktop;

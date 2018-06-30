@@ -1,0 +1,89 @@
+[KFileDialog Settings]
+Recent Files[$e]=vokoscreen-2018-03-22_21-20-34.mkv,file:$HOME/Videos/vokoscreen-2018-03-22_21-20-34.mkv
+Recent URLs[$e]=file:$HOME/Videos/
+
+[MainWindow]
+Height 1080=948
+State=AAAA/wAAAAD9AAAAAQAAAAIAAAd8AAAA9vwBAAAADPsAAAAYAG4AbwB0AGUAcwBfAHcAaQBkAGcAZQB0AAAAAAD/////AAAARgD////7AAAADgBsAGkAYgByAGEAcgB5AAAAAAD/////AAAAWAD////7AAAAGgBhAHUAZABpAG8AcwBwAGUAYwB0AHIAdQBtAAAAAAD/////AAAAawD////7AAAAFgBwAHIAbwBqAGUAYwB0AF8AYgBpAG4BAAAAAAAAAOkAAABYAP////wAAADvAAAA8wAAAOYA////+gAAAAABAAAAAvsAAAAYAGUAZgBmAGUAYwB0AF8AcwB0AGEAYwBrAQAAAAD/////AAAA5gD////7AAAAHgBjAGwAaQBwAF8AcAByAG8AcABlAHIAdABpAGUAcwAAAAAA/////wAAAEQA/////AAAAegAAAIMAAAAugD////6AAAAAQEAAAAC+wAAAB4AdAByAGEAbgBzAGkAdABpAG8AbgBfAGwAaQBzAHQBAAAAAP////8AAABWAP////sAAAAWAGUAZgBmAGUAYwB0AF8AbABpAHMAdAEAAAAA/////wAAALoA/////AAAA/oAAAOCAAABQAD////6AAAAAQEAAAAC+wAAABgAYwBsAGkAcABfAG0AbwBuAGkAdABvAHIBAAAAAP////8AAAFAAP////sAAAAeAHAAcgBvAGoAZQBjAHQAXwBtAG8AbgBpAHQAbwByAQAAAAD/////AAABQAD////7AAAAGAB1AG4AZABvAF8AaABpAHMAdABvAHIAeQAAAAAA/////wAAAEYA////+wAAABYAdgBlAGMAdABvAHIAcwBjAG8AcABlAAAAAAD/////AAABPQD////7AAAAEAB3AGEAdgBlAGYAbwByAG0AAAAAAP////8AAACrAP////sAAAAUAHIAZwBiAF8AcABhAHIAYQBkAGUAAAAAAP////8AAAClAP////sAAAASAGgAaQBzAHQAbwBnAHIAYQBtAAAAAAD/////AAABRAD///8AAAd8AAACZQAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAIAAAACAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAAAAAAAAAABgAZQB4AHQAcgBhAFQAbwBvAGwAQgBhAHIBAAABe/////8AAAAAAAAAAA==
+ToolBarsMovable=Disabled
+Width 1920=1916
+
+[Recent Dirs]
+KdenliveClipFolder[$e]=$HOME/Videos/,$HOME/Documents
+
+[Scope_Histogram]
+autoRefresh=true
+bEnabled=true
+gEnabled=true
+rEnabled=true
+realtime=false
+rec601=false
+sEnabled=false
+yEnabled=true
+
+[Scope_RGB Parade]
+autoRefresh=true
+axis=false
+gradref=false
+paintmode=0
+realtime=false
+
+[Scope_Vectorscope]
+75PBox=false
+autoRefresh=true
+axis=false
+backgroundmode=0
+colorspace_ypbpr=false
+gain=1
+iqlines=false
+paintmode=0
+realtime=false
+
+[Scope_Waveform]
+autoRefresh=true
+paintmode=0
+realtime=false
+rec601=false
+
+[bin]
+treeviewheaders=AAAA/wAAAAAAAAABAAAAAQAAAAABAAAAAAAAAAAAAAADBgAAAAIAAAACAAAAZAAAAAEAAAA+AAAAvQAAAAMBAQABAAAAAAAAAAAAAAAAZP////8AAACBAAAAAAAAAAMAAAC9AAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAPoAAAAAEU=
+
+[capture]
+decklink_extension=mov
+decklink_parameters=vcodec=dnxhd vb=145000k acodec=pcm_s16le threads=%threads
+grab_extension=mov
+grab_parameters=-crf 25 -vcodec libx264 -preset veryfast -threads 0
+v4l_extension=mpg
+v4l_parameters=qscale=4 ab=192k vcodec=mpeg2video acodec=mp2 threads=%threads
+
+[env]
+defaultprojectfolder[$e]=$HOME/Documents
+ffmpegpath[$e]=/usr/bin/ffmpeg
+ffplaypath[$e]=/usr/bin/ffplay
+ffprobepath[$e]=/usr/bin/ffprobe
+mltpath[$e]=/usr/share/mlt/profiles/
+rendererpath[$e]=/usr/bin/melt
+
+[project]
+proxyextension=mkv
+proxyparams=-vf yadif,scale=960:-2 -qscale 3 -vcodec mjpeg -acodec pcm_s16le
+
+[sdl]
+audiobackend=sdl2_audio
+sdlAudioBackend=sdl2_audio
+
+[timeline]
+timelineheaderwidth=AAAA/wAAAAEAAAACAAAAlgAAAx4B/////wEAAAABAA==
+trackheight=65
+
+[unmanaged]
+current_profile=atsc_1080p_25
+default_profile=atsc_1080p_25
+force_breeze=true
+monitor_audio=false
+producerslist=abnormal,color,colour,consumer,hold,loader,melt,melt_file,noise,timewarp,tone,framebuffer,ladspa.1047,ladspa.1050,avformat,avformat-novalidate,xml,xml-string,xml-nogl,blipflash,count,decklink,slowmotion,pgm,pango,pixbuf,qimage,qtext,kdenlivetitle
+project_display_ratio=1.7777777777777777
+widgetstyle=Default
+
+[version]
+version=17.12.3
