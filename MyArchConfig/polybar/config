@@ -1,0 +1,338 @@
+;-------------------------------------------------------------------------------
+;	V A R I A B L E S
+;-------------------------------------------------------------------------------
+
+[colors]
+background = #131313
+background-alt = #333
+
+foreground = #b2b2b2
+foreground-alt = #ee3333
+
+trans = #FF292b2e
+white = #eee
+grey = #444444
+pink = #d75f87
+blue = #4f97d7
+purple = #875faf
+green = #20ad80
+red = #ee3333
+
+;-------------------------------------------------------------------------------
+;	B A R S
+;-------------------------------------------------------------------------------
+
+[bar/main]
+width = 100%
+height = 14
+radius = 1.0
+fixed-center = true
+
+background = ${colors.trans}
+foreground = ${colors.foreground}
+
+border-size = 2
+border-color = #131313
+
+; border-bottom-size = 2
+; border-bottom-color = #131313
+
+; padding-left = 0
+; padding-right = 2
+
+; module-margin-left = 1
+; module-margin-right = 2
+;[bar/free]
+
+modules-left = i3 arrow0 xwindow arrow
+modules-center = 
+modules-right = arrow8 filesystem arrow7 wlan arrow6 wlanspeed arrow7 battery arrow6 volume arrow7 date arrow6 power
+
+tray-position = right
+tray-background = ${colors.background}
+tray-padding = 4
+
+;----------------------------------------------------------
+;			F O N T S
+;----------------------------------------------------------
+
+font-0 = Hack:pixelsize=10:weight=bold;2
+font-1 = Hack:pixelsize=32;2
+font-2 = FontAwesome:size=10;2
+
+;-------------------------------------------------------------------------------
+;	D E C O R A T I O N S
+;-------------------------------------------------------------------------------
+
+
+[module/arrow]
+; background to trans
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.pink}
+content-background = ${colors.trans}
+
+[module/arrow0]
+; background to trans
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.background}
+content-background = ${colors.pink}
+
+[module/arrow1]
+; grey to Blue
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.blue}
+content-background = ${colors.grey}
+
+[module/arrow2]
+; Blue to Purple
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.purple}
+content-background = ${colors.blue}
+
+[module/arrow3]
+; Purple to pink
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.pink}
+content-background = ${colors.purple}
+
+[module/arrow4]
+; pink to green
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.green}
+content-background = ${colors.pink}
+
+[module/arrow5]
+; green to grey
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.grey}
+content-background = ${colors.green}
+
+[module/arrow6]
+; grey to bg
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.background}
+content-background = ${colors.grey}
+
+[module/arrow7]
+; bg to grey
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.grey}
+content-background = ${colors.background}
+
+[module/arrow8]
+; grey to bg
+type = custom/text
+content = " "
+content-font = 2
+content-foreground = ${colors.background}
+content-background = ${colors.trans}
+
+;-------------------------------------------------------------------------------
+;	M O D U L E S
+;-------------------------------------------------------------------------------
+
+[module/i3]
+type = internal/i3
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-3 = 4;
+;ws-icon-4 = 5;
+;ws-icon-5 = 6;
+
+;label-focused = %icon%
+label-focused-padding = 1
+label-focused-foreground = ${colors.pink}
+
+;label-urgent = %icon%
+label-urgent-padding = 1
+label-urgent-foreground = ${colors.green}
+
+;label-occupied = %icon%
+label-occupied-padding = 1
+label-occupied-foreground = ${colors.blue}
+
+;label-empty = %icon%
+label-empty-padding = 1
+label-empty-foreground = ${colors.white}
+
+[module/xwindow]
+type = internal/xwindow
+
+format-foreground = ${colors.background}
+format-background = ${colors.pink}
+
+label = "» %title:0:22:...%"
+
+[module/wlanspeed]
+type = internal/network
+interface = wlo1 
+interval = 1.0
+
+label-connected =%downspeed:1% %upspeed:1%
+label-connected-foreground = ${colors.purple}
+label-connected-background = ${colors.background}
+
+[module/wlan]
+type = internal/network
+interface = wlo1 
+interval = 1.0
+
+
+format-connected-prefix = "  "
+format-connected-prefix-foreground = ${colors.pink}
+format-connected-prefix-background = ${colors.grey}
+
+label-connected =  %signal% % %essid% %local_ip%
+label-connected-foreground = ${colors.pink}
+label-connected-background = ${colors.grey}
+
+[module/eth]
+type = internal/network
+interface = eno1
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 10
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 4
+
+format-mounted = <label-mounted>
+label-mounted = %mountpoint%: %free%% of %total%
+label-mounted-background = ${colors.background}
+
+[module/date]
+type = internal/date
+interval = 5
+date = " %b %d"
+time= %l:%M %P
+;label =%date%,%time%
+label = %{A1:gsimplecal:} %date%,%time% %{A}
+label-foreground = ${colors.white}
+label-background = ${colors.grey}
+click-left = gsimplecal
+
+
+[module/volume]
+type = internal/volume
+
+; mapping = true
+format-volume = <ramp-volume><label-volume>
+
+label-volume = %percentage%%
+label-volume-foreground = ${colors.blue}
+label-volume-background = ${colors.background}
+label-muted = "  " %{O10 B#000}
+label-muted-foreground = ${colors.red}
+label-muted-background = ${colors.background}
+
+ramp-volume-0 = "  "
+ramp-volume-0-foreground = ${colors.blue}
+ramp-volume-0-background = ${colors.background}
+ramp-volume-1 = "  "
+ramp-volume-1-foreground = ${colors.blue}
+ramp-volume-1-background = ${colors.background}
+ramp-volume-2 = "  "
+ramp-volume-2-foreground = ${colors.blue}
+ramp-volume-2-background = ${colors.background}
+ramp-volume-3 = "  "
+ramp-volume-3-foreground = ${colors.blue}
+ramp-volume-3-background = ${colors.background}
+
+[module/battery]
+interval = 5
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 100
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${colors.green}
+format-charging-background = ${colors.grey}
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.green}
+format-discharging-background = ${colors.grey}
+format-full = <label-full>
+format-full-foreground = ${colors.green}
+format-full-background = ${colors.grey}
+
+label-charging = " %percentage%%"
+label-discharging = "%percentage%%"
+label-discharging-foreground = ${colors.green}
+label-full = " %percentage%%"
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colors.red}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/power]
+type = custom/text
+content =  
+content-foreground = ${colors.pink}
+click-left = oblogout
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
