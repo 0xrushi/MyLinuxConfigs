@@ -1,0 +1,278 @@
+#Definitions
+
+set $mod Mod4
+set $base00 #101218
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
+
+set $shutdown shutdown -h now
+set $reboot reboot 
+set $exit i3-msg exit
+set $term termite
+
+#For Cmus
+
+set $music --no-startup-id st -e cmus
+set $pause --no-startup-id cmus-remote -u
+set $next --no-startup-id cmus-remote -n
+set $prev --no-startup-id cmus-remote -r
+set $lilfor --no-startup-id cmus-remote -k +10
+set $bigfor --no-startup-id cmus-remote -k +120
+set $lilbak --no-startup-id cmus-remote -k -10
+set $bigbak --no-startup-id cmus-remote -k -120
+set $beg --no-startup-id cmus-remote -k 00:00:00
+
+
+
+
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+
+
+
+set_from_resource   $background background
+set_from_resource   $foreground foreground
+set_from_resource   $color0     color0
+set_from_resource   $color1     color1
+set_from_resource   $color2     color2
+set_from_resource   $color3     color3
+set_from_resource   $color4     color4
+set_from_resource   $color5     color5
+set_from_resource   $color6     color6
+set_from_resource   $color7     color7
+set_from_resource   $color8     color8
+set_from_resource   $color9     color9
+set_from_resource   $color10    color10
+set_from_resource   $color11    color11
+set_from_resource   $color12    color12
+set_from_resource   $color13    color13
+set_from_resource   $color14    color14
+set_from_resource   $color15    color15
+
+
+mode "resize" {
+        
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Startup Scripts
+
+exec --no-startup-id dunst
+exec_always  --no-startup-id  "sh $HOME/.config/i3/wallpaperchange.sh"
+exec  --no-startup-id  "wal -i $HOME/Pictures/wallpapers/"
+exec_always --no-startup-id "redshift -l 18.5:17.83"
+#exec --no-startup-id exec synclient TouchpadOff=0
+exec --no-startup-id $HOME/lock.sh -u $HOME/Pictures/wallpapers/lockscreen.png
+exec thunar
+#exec_always LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 subl3
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always compton -f --config $HOME/.config/compton.conf
+exec --no-startup-id nm-applet
+#exec --no-startup-id pamac-tray
+#bindsym $mod+c exec $HOME/.config/i3/conky_start.sh
+exec terminator
+bindsym $mod+b terminator -e tmux new-window -n "welcome" -s "welcome" 'welcome'
+# For i3-gaps
+gaps inner 8
+gaps outer 8
+# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+
+# Fonts
+#font pango:System San Francisco Display Regular 10
+
+
+
+# Bindings
+bindsym $mod+space exec --no-startup-id /usr/local/bin/zzzfoo -e="-mime:message/rfc822" -o xdg-open
+bindsym $mod+Return exec terminator
+bindsym $mod+Shift+q kill
+bindsym $mod+q exec "$HOME/lock.sh --lock dimblur"
+
+bindsym $mod+d exec "rofi -show-icon -combi-modi window,drun,ssh -show combi -config $HOME/.config/rofi/config"
+
+bindsym $mod+j focus left
+bindsym $mod+Shift+j move left 
+
+bindsym $mod+k focus down
+bindsym $mod+Shift+k move down
+
+bindsym $mod+l focus up
+bindsym $mod+Shift+l move up
+
+bindsym $mod+semicolon focus right
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Left focus left
+bindsym $mod+Shift+Left move left
+
+bindsym $mod+Down focus down
+bindsym $mod+Shift+Down move down
+
+bindsym $mod+Up focus up
+bindsym $mod+Shift+Up move up
+
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+Shift+space floating toggle
+#bindsym $mod+space focus mode_toggle
+
+bindsym $mod+Shift+c exec $HOME/.config/i3/prompt.sh "Are you sure?" "$reboot"
+
+bindsym $mod+g exec terminator -e glances
+
+bindsym $mod+Shift+r restart
+bindsym $mod+r mode "resize"
+
+bindsym $mod+Shift+e exec $HOME/.config/i3/prompt.sh "You sure?" "$exit"
+
+bindsym $mod+Shift+x exec $HOME/.config/i3/prompt.sh "You sure?" "$shutdown"
+
+bindsym $mod+w exec firefox
+
+bindsym $mod+Print exec --no-startup-id screenkey
+ 
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+bindsym $mod+Shift+p exec terminator -e scrot 
+bindsym $mod+m exec terminator -e cmus
+bindsym $mod+e exec terminator -e ranger
+#bindsym $mod+u exec urxvt
+
+#--WorkSpace Bindings
+
+bindsym $mod+Tab  workspace back_and_forth
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+
+#XF86 Keys
+bindsym XF86AudioNext exec $next
+bindsym XF86AudioPlay exec $pause
+bindsym XF86AudioPrev exec $prev
+
+#assign [class = "urxvt"] $workspace3
+assign [class = "Thunar"] $workspace5
+assign [class = "Firefox"] $workspace2
+
+
+for_window [class="qutebrowser"] floating enable border none fullscreen enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="Thunar"] border none
+for_window [class=^.*] border pixel 3
+for_window [class="mpv"] floating enable
+for_window [class="Telegram*"] floating enable
+
+
+for_window [instance = "termite"] floating enable
+for_window [instance = "termite"] resize set 625 400
+
+exec_always --no-startup-id termite
+
+for_window [instance = "termite"] move scratchpad
+for_window [instance = "termite"] border pixel 5
+  
+bindsym $mod+u    [instance = "termite"] scratchpad show; [instance = "termite"]  move position center
+
+
+#Move cmus to scratchpad
+bindsym Ctrl+u move scratchpad
+bindsym $mod+Shift+u [class = "Terminator"] scratchpad show 
