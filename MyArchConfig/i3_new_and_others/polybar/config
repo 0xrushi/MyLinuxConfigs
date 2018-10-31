@@ -37,16 +37,16 @@ red = #ee3333
 
 [bar/main_bar]
 ;monitor = ${env:MONITOR:HDMI-1}
-monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:eDP-1}
 width = 100%
-height = 20
+height = 27
 offset-x = 0
 offset-y = 0
 radius = 0.0
-fixed-center = false
+fixed-center = faltruese
 
 
-background = ${colors.my_color5}
+background = ${colors.my_background1}
 foreground =  ${colors.my_foreground}
 
 line-size = 2.5
@@ -55,7 +55,7 @@ line-color = ${colors.white}
 border-size = 0
 border-color = ${colors.my_color2}
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 4
@@ -251,24 +251,8 @@ animation-charging-framerate = 750
 
 
 [module/backlight]
-type = internal/xbacklight
-;format = <ramp> <bar>
-
-;ramp-0 = 
-;ramp-1 = 
-;ramp-2 = 
-
-;bar-width = 10
-;bar-indicator = |
-;bar-indicator-font = 3
-;bar-indicator-foreground = #ff
-;bar-fill = ─
-;bar-fill-font = 3
-;bar-fill-foreground = #c9665e
-;bar-empty = ─
-;bar-empty-font = 3
-;bar-empty-foreground = #44
-
+type = internal/backlight
+card = intel_backlight
 format = <label> <bar>
 label = ""
 label-foreground = #c8f059
@@ -411,17 +395,6 @@ label-mounted = %mountpoint%: %free% of %total%
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
-
-
-[module/cmus]
-type = custom/script
-
-exec = sh ~/.config/polybar/cmus.sh
-exec-if = pgrep -x cmus
-interval = 1
-
-click-left = cmus-remote --pause
-click-right = cmus-remote --stop
 
 
 ;--------------------- USER SCRIPTS----------------------

@@ -87,7 +87,7 @@ mode "resize" {
 
 # Startup Scripts
 
-exec --no-startup-id dunst
+exec --no-startup-id "sh /home/h4x3d/.conky/conky-startup.sh"
 exec_always  --no-startup-id  "sh $HOME/.config/i3/wallpaperchange.sh"
 exec  --no-startup-id  "wal -i $HOME/Pictures/wallpapers/"
 exec_always --no-startup-id "redshift -l 18.5:17.83"
@@ -98,10 +98,8 @@ exec thunar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always compton -f --config $HOME/.config/compton.conf
 exec --no-startup-id nm-applet
-#exec --no-startup-id pamac-tray
 #bindsym $mod+c exec $HOME/.config/i3/conky_start.sh
 exec terminator
-bindsym $mod+b terminator -e tmux new-window -n "welcome" -s "welcome" 'welcome'
 # For i3-gaps
 gaps inner 8
 gaps outer 8
@@ -150,11 +148,12 @@ mode "$mode_gaps_outer" {
 
 
 # Bindings
-bindsym $mod+space exec --no-startup-id /usr/local/bin/zzzfoo -e="-mime:message/rfc822" -o xdg-open
+bindsym $mod+space exec --no-startup-id fsearch
 bindsym $mod+Return exec terminator
 bindsym $mod+Shift+q kill
 bindsym $mod+q exec "$HOME/lock.sh --lock dimblur"
-
+bindsym $mod+t exec thunar
+#bindsym $mod+ exec ranger
 bindsym $mod+d exec "rofi -show-icon -combi-modi window,drun,ssh -show combi -config $HOME/.config/rofi/config"
 
 bindsym $mod+j focus left
@@ -250,8 +249,8 @@ bindsym XF86AudioPlay exec $pause
 bindsym XF86AudioPrev exec $prev
 
 #assign [class = "urxvt"] $workspace3
-assign [class = "Thunar"] $workspace5
-assign [class = "Firefox"] $workspace2
+#assign [class = "Thunar"] $workspace5
+#assign [class = "Firefox"] $workspace2
 
 
 for_window [class="qutebrowser"] floating enable border none fullscreen enable
