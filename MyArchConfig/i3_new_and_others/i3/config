@@ -85,6 +85,19 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+mode "move" {
+        bindsym j move Up
+        bindsym k move Down
+        bindsym l move Right
+        bindsym h move Left
+        bindsym Left move Left
+        bindsym Down move Down
+        bindsym Up move Up
+        bindsym Right move Right
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
 # Startup Scripts
 
 exec --no-startup-id "sh /home/h4x3d/.conky/conky-startup.sh"
@@ -195,6 +208,7 @@ bindsym $mod+g exec terminator -e glances
 
 bindsym $mod+Shift+r restart
 bindsym $mod+r mode "resize"
+bindsym $mod+m mode "move"
 
 bindsym $mod+Shift+e exec $HOME/.config/i3/prompt.sh "You sure?" "$exit"
 
@@ -212,7 +226,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 bindsym $mod+Shift+p exec terminator -e scrot 
-bindsym $mod+m exec terminator -e cmus
+#bindsym $mod+m exec terminator -e cmus
 bindsym $mod+e exec terminator -e ranger
 #bindsym $mod+u exec urxvt
 
