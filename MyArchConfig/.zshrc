@@ -108,23 +108,21 @@ if [[ -r /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]
     source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# my anaconda is installed in /home/h4x3d/Enviornments/anaconda3
-
-__conda_setup="$('/home/h4x3d/Enviornments/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/h4x3d/Enviornments/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/h4x3d/Enviornments/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/h4x3d/Enviornments/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/h4x3d/Enviornments/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/h4x3d/Enviornments/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/h4x3d/Enviornments/anaconda3/bin:$PATH"
+        export PATH="/home/h4x3d/Enviornments/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
