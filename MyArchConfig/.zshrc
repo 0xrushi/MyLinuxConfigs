@@ -127,3 +127,12 @@ unset __conda_setup
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+
+
+# EXPORTS
+export ANDROID_HOME=/mnt/d/ArchHome/AndroidStudioDrive/Android/Sdk
+PATH=$PATH:$ANDROID_HOME/tools
+PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export PATH="$PATH:/mnt/d/ArchHome/flutter/bin/"
