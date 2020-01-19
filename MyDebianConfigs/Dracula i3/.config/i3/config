@@ -41,6 +41,12 @@ bindsym $mod+h split h
 # Split window in vertical
 bindsym $mod+v split v
 
+# volume
+bindsym F8 exec "amixer -q set Master 10%+ unmute"
+bindsym F7 exec "amixer -q set Master 10%- unmute"
+bindsym F6 exec "amixer -q set Master 0% mute"
+
+
 # Enter fullscreen mode for the focused window
 bindsym $mod+f fullscreen toggle
 
@@ -91,6 +97,10 @@ bindsym $mod+Shift+c reload
 # Restart i3 session inplace
 bindsym $mod+Shift+r restart
 
+
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+ # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%- # increase screen brightness
+
 # Resize window
 mode "resize" {
   bindsym Left resize shrink width 10 px or 10 ppt
@@ -112,7 +122,9 @@ client.unfocused        #282a36 #282a36 #f8f8f2 #282a36 #282a36
 client.urgent           #ff5555 #ff5555 #282a36 #ff5555 #ff5555
 client.placeholder      #282a36 #282a36 #f8f8f2 #282a36 #282a36
 
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
 # Run commands on startup
 exec_always --no-startup-id bash /home/h4x3d/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-fill /home/h4x3d/Pictures/Wallpapers/Linux/Picture\ 14.png
+exec_always --no-startup-id feh --bg-fill /home/h4x3d/Pictures/Wallpapers/Linux/macosall.png
 exec_always --no-startup-id compton -b
