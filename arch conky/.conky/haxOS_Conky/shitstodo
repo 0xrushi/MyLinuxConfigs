@@ -1,4 +1,0 @@
-#/bin/bash
-
-#printf '● %s\n' "$*" >> .shitstodo
-printf '▷ %s\n' "$*" >> .shitstodo
