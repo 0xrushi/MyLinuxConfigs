@@ -91,7 +91,7 @@ local themes = {
 }
 
 -- choose your theme here
-local chosen_theme = themes[1]
+local chosen_theme = themes[3]
 
 
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
@@ -105,6 +105,8 @@ local modkey1      = "Control"
 -- personal variables
 --change these variables if you want
 local browser           = "firefox"
+local browser2          = "firefox-dev"
+local browser3          = "chromium"
 local editor            = "sublime"
 local editorgui         = "geany"
 local filemanager       = "pcmanfm"
@@ -116,7 +118,8 @@ local virtualmachine    = "virtualbox"
 
 -- awesome variables
 awful.util.terminal = terminal
-awful.util.tagnames = { " 1 "," 2 "," 3 "," 4 "}
+awful.util.tagnames = { " 1 "," 2 "," 3 ", " 4 ", " 5 ", "6 ", "7 ", "8 "}
+-- awful.util.tagnames = { " Firefox "," Chromium "," Husky ", "Web", " Discord ", "6 ", "7 ", "8 "}
 --awful.util.tagnames = {  "  ", "  ", " " ", "  ", " " ", "   ", "  ", "  ", "  ", "  " }
 --awful.util.tagnames = {  "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " }
 --awful.util.tagnames = { "⠐", "⠡", "⠲", "⠵", "⠻", "⠿" }
@@ -291,12 +294,12 @@ globalkeys = my_table.join(
     
     --rofi
 
-    awful.key({ modkey, "Shift" }, "Return", function () awful.util.spawn( "rofi -threads 0 -sort -show drun -show-icons " ) end,
+    awful.key({ modkey }, "d", function () awful.util.spawn( "rofi -threads 0 -sort -show drun -show-icons " ) end,
         {description = "show rofi " , group = "hotkeys" }),
 
     -- My applications (Super+Alt+Key)
-    awful.key({ modkey, altkey }, "a", function () awful.util.spawn( "emacs" ) end,
-        {description = "emacs code editor" , group = "gui apps" }),
+    -- awful.key({ modkey, altkey }, "a", function () awful.util.spawn( "emacs" ) end,
+    --     {description = "emacs code editor" , group = "gui apps" }),
     awful.key({ modkey, altkey }, "f", function () awful.util.spawn( "firefox" ) end,
         {description = "firefox" , group = "gui apps" }),
     awful.key({ modkey, altkey }, "d", function () awful.util.spawn( "dolphin" ) end,
@@ -311,24 +314,20 @@ globalkeys = my_table.join(
         {description = "neomutt email" , group = "terminal apps" }),
     awful.key({ modkey, altkey  }, "i", function () awful.util.spawn( terminal.." -e vim .config/awesome/rc.lua" ) end,
         {description = "edit config" , group = "terminal apps" }),
-    awful.key({ modkey, altkey  }, "j", function () awful.util.spawn( terminal.." -e joplin" ) end,
-        {description = "joplin" , group = "terminal apps" }),
-    awful.key({ modkey, altkey }, "l", function () awful.util.spawn( terminal.." -e lynx --cfg=~/.lynx/lynx.cfg --lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube" ) end,
-        {description = "lynx cli browser" , group = "terminal apps" }),
-    awful.key({ modkey, altkey }, "m", function () awful.util.spawn( terminal.." -e toot curses" ) end,
-        {description = "toot curses" , group = "terminal apps" }),
+    -- awful.key({ modkey, altkey  }, "j", function () awful.util.spawn( terminal.." -e joplin" ) end,
+    --     {description = "joplin" , group = "terminal apps" }),
+    -- awful.key({ modkey, altkey }, "l", function () awful.util.spawn( terminal.." -e lynx --cfg=~/.lynx/lynx.cfg --lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube" ) end,
+    --     {description = "lynx cli browser" , group = "terminal apps" }),
+    -- awful.key({ modkey, altkey }, "m", function () awful.util.spawn( terminal.." -e toot curses" ) end,
+    --     {description = "toot curses" , group = "terminal apps" }),
     awful.key({ modkey, altkey }, "n", function () awful.util.spawn( terminal.." -e nnn" ) end,
         {description = "file manager" , group = "terminal apps" }), 
     awful.key({ modkey, altkey }, "v", function () awful.util.spawn( terminal.." -e vim" ) end,
         {description = "editor" , group = "terminal apps" }),
-    awful.key({ modkey, altkey  }, "p", function () awful.util.spawn( terminal.." -e pianobar" ) end,
-        {description = "pianobar" , group = "terminal apps" }),
+    -- awful.key({ modkey, altkey  }, "p", function () awful.util.spawn( terminal.." -e pianobar" ) end,
+    --     {description = "pianobar" , group = "terminal apps" }),
     --awful.key({ modkey, altkey }, "r", function () awful.util.spawn( terminal.." -e rtv" ) end,
     --    {description = "rtv" , group = "terminal apps" }),
-    awful.key({ modkey, altkey  }, "w", function () awful.util.spawn( terminal.." -e wopr report.xml" ) end,
-        {description = "wopr report.xml" , group = "terminal apps" }),
-    awful.key({ modkey, altkey  }, "y", function () awful.util.spawn( terminal.." -e youtube-viewer" ) end,
-        {description = "youtube-viewer" , group = "terminal apps" }),
 
 
     -- screenshots
@@ -339,7 +338,7 @@ globalkeys = my_table.join(
     awful.key({ modkey1, "Shift"  }, "Print", function() awful.util.spawn("gnome-screenshot -i") end,
         {description = "Gnome screenshot", group = "screenshots"}),
     awful.key({ modkey, "Shift"  }, "s", function() awful.util.spawn("flameshot gui") end,
-        {description = "Gnome screenshot", group = "screenshots"}),
+        {description = "Flameshot screenshot", group = "screenshots"}),
 
 
     -- Personal keybindings}}}
@@ -511,10 +510,6 @@ globalkeys = my_table.join(
               {description = terminal, group = "super"}),
     awful.key({ modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift" }, "q", function () awful.spawn.with_shell(" killall autostart.sh") end,
-              {description = "killall autostart.sh processes", group = "hotkeys"}),
-    awful.key({ modkey, "Shift" }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
 
     awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -617,8 +612,7 @@ globalkeys = my_table.join(
               end,
               {description = "lua execute prompt", group = "awesome"})
     --]]
-)
-
+    )
 clientkeys = my_table.join(
     awful.key({ altkey, "Shift"   }, "m",      lain.util.magnify_client,
               {description = "magnify client", group = "client"}),
@@ -628,7 +622,7 @@ clientkeys = my_table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "hotkeys"}),
     awful.key({ modkey, "Shift" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -754,8 +748,17 @@ awful.rules.rules = {
 
     -- Set applications to always map on the tag 1 on screen 1.
     -- find class or role via xprop command
-    --{ rule = { class = browser1 },
-      --properties = { screen = 1, tag = awful.util.tagnames[1] } },
+    -- vscode
+    { rule = { class = "Code"},
+        properties = { screen = 1, tag = awful.util.tagnames[1], maximized = false } },
+    { rule = { class = browser},
+        properties = { screen = 1, tag = awful.util.tagnames[2], maximized = false } },
+    { rule = { class = browser2},
+        properties = { screen = 1, tag = awful.util.tagnames[3] } },
+    { rule = { class = browser3},
+        properties = { screen = 1, tag = awful.util.tagnames[4] } },
+
+
 
     --{ rule = { class = editorgui },
         --properties = { screen = 1, tag = awful.util.tagnames[2] } },

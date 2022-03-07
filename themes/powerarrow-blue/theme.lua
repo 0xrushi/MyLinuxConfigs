@@ -18,7 +18,7 @@ color_table = {"#5A9DE3","#A94358","#54976E","#FFA500","#A77AC4"}
 color_table1 = {"#323234","#E06C75","#61AFEF","#4E4E4E"}
 -- for random colors
 math.randomseed(os.time()) -- random initialize
-value = math.random(1,5)
+value = math.random(1, 7)
 --wall_count = os.capture("ls ~/wallpapers/ | grep wc -l")
 --NEED HELP HERE
 

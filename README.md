@@ -2,7 +2,7 @@
 # Source : https://gitlab.com/dwt1/dotfiles.git
 # My Awesome Configuration
 
-![Screenshot of my desktop](./screenshot.png)
+![Screenshot of my desktop](https://github.com/Creator54/awesome-configs/blob/nixos_test/screenshot.png)
 
 Awesome is a highly configurable, tiling window manager for X. It is very fast, extensible and licensed under the GNU GPLv2 license.  Awesome is a perfect "first" tiling window manager for those who want to try out tiling, but the extreme customization that you can achieve with awesome makes it a power user's dream.  Awesome is configured with Lua.
 
@@ -12,17 +12,6 @@ Awesome is a highly configurable, tiling window manager for X. It is very fast, 
 * Extremely customizable, maybe more so than any other window manager.
 * Configured in Lua.
 * A documented API to configure and define the behavior of your window manager.
-
-* Added script to auto download everyday's bing wallpaper
-* Flameshot tool for screenshot 
-
-# Things you might need to install on arch linux
-
-```
-yay -S betterlockscreen  
-
-pacman -S flameshot rofi xbacklight dmenu 
-```
 
 # My Keybindings
 
