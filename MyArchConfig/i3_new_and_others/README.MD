@@ -1,1 +1,0 @@
-Paste zzzfoo in /usr/local/bin

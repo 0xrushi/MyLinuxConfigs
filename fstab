@@ -1,0 +1,8 @@
+# supports mounting of local hdd connected to pi, paste at /etc/fstab
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+UUID=25160289-ba3e-4ff2-9f4e-28300e30ad1d	/         	ext4      	rw,relatime	0 1
+UUID=1B4E-0116      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+pi@10.0.0.19:/mnt/hdd  /mnt/pi  fuse.sshfs x-systemd.automount,_netdev,user,idmap=user,transform_symlinks,identityfile=/home/alarm/.ssh/id_rsa,allow_other,default_permissions,uid=1000,gid=1000 0 0
