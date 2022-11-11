@@ -41,6 +41,11 @@
     mpv
     vlc
     obs-studio
+    nix-direnv
+    ulauncher
+    libarchive
+    go
+    sshuttle
   ];
 
   # Some fonts
