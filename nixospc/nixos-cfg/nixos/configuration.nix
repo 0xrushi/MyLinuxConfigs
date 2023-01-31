@@ -82,6 +82,14 @@
   security.allowSimultaneousMultithreading = true;
   security.rtkit.enable = true;
 
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+    setLdLibraryPath = true;
+  };
+
+  virtualisation.docker.enableNvidia = true;
+  virtualisation.docker.enable = true;
 
   #services.openssh = {
   #  enable = true;
@@ -107,7 +115,10 @@
   # NVIDIA drivers are unfree.
   nixpkgs.config.allowUnfree = true;
 
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-}
+ programs.zsh = {
+  enable = true;
+};
 
+users.defaultUserShell = pkgs.zsh;
+
+}
