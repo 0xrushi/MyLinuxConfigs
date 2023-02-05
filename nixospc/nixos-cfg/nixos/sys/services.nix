@@ -3,6 +3,8 @@
 {
   # services that i need
   services = {
+    openssh.enable = true;
+    
     xserver = {
       enable = true;
       layout = "us";
@@ -15,6 +17,10 @@
       '';
       videoDrivers = [ "nvidia" ];
     };
+
+    xrdp.enable = true;
+    xrdp.defaultWindowManager = "startplasma-x11";
+    
 
     printing.enable = true;
     pipewire = {

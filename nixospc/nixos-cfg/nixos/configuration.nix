@@ -39,6 +39,7 @@
     #    };
     #  };
     #};
+    firewall.allowedTCPPorts = [ 3389 ];
     networkmanager.enable = true;
     hostName = "nixos";
     nameservers = ["1.1.1.1" "8.8.4.4" "8.8.8.8" "9.9.9.9"]; #without this will have to add nameserves to /etc/resolv.conf , internet fails without this on chroot, should be declared since not using dhcp, start nameserver from 1.1.1.1 else many sites give SSL errors, also temp fix is enable DoH in browser
@@ -76,6 +77,10 @@
       kate
       chromium
      thunderbird
+    ];
+
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCa/Azd1aY/4oiNPk6cdubnR8slh5qez7NkDECmdFyyW3TSVmXkzYiOZk0JNr0ExxcEZlLBpu2vwTaOFergbTsyhL7Kwbg5h83Dgy+WK5xA4C02lUD4prFs16wV7l9i9GJjRNAdi+IhBRdXV5CBE13VxH9zhUbOK+dVDMZc174iqBaeXBlWkAPsbtrzZtYvXkwOaJyno0ys3Razg+y0JKuyufyFC9UCVaz2kP3lLeMSMU8Sgs92TeP7zB6y5HOwYJRbYULjv5wOyrwGj+eAT8wJEiuWWoCb2PZMULSgfBW22wblKZYJcGvQXqnHFWPIjxKXEAh8mIz0dy+SAFWVKpCKVXA9POp/2+7YjnmRCfBxcid2rSCLGkCJETUPxSj+c9/HnWDKrVwjR6+IMetBOvZq/ErfmGGGIuDZ7M7xmyvDSv8jDVBZnGm/eB0Jc0ceCwtNhHHwZCWbbF9aOqbwCdqJZ3vPKShWUYcOViqxy3VzViVbN1EIOSrjBYnXaLg4gk= bread@breadpitt"
     ];
   };
 
