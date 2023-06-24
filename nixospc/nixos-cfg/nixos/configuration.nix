@@ -24,9 +24,8 @@
       systemd-boot.enable = true;
       timeout = 1; #things can get messy anytime
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
     };
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
   };
 
   # networking
@@ -71,7 +70,7 @@
   users.users.bread = {
     isNormalUser = true;
     description = "breadpitt";
-    extraGroups = [ "networkmanager" "wheel"];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       firefox
       kate
@@ -92,9 +91,6 @@
     driSupport32Bit = true;
     setLdLibraryPath = true;
   };
-
-  virtualisation.docker.enableNvidia = true;
-  virtualisation.docker.enable = true;
 
   #services.openssh = {
   #  enable = true;
@@ -119,6 +115,7 @@
   system.stateVersion = "22.05"; # Did you read the comment?
   # NVIDIA drivers are unfree.
   nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowBroken = true; 
 
  programs.zsh = {
   enable = true;

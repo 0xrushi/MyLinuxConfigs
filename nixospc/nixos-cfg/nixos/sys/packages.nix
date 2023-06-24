@@ -21,10 +21,11 @@
     gnumake
     firefox
     chromium
+    microsoft-edge
     konsole
     fortune
     capitaine-cursors
-    bibata-extra-cursors
+    # bibata-extra-cursors
     papirus-maia-icon-theme
     adapta-gtk-theme #dark theme
     meld
