@@ -9,6 +9,7 @@
     enableOnBoot = false;
     enableNvidia = true;
     extraOptions = "--config-file=${pkgs.writeText "daemon.json" (builtins.toJSON {
+      data-root ="/run/media/bread/84d83a2f-1dce-43fe-89c9-83e8c0df271d/doraemon/rushidockershit/";
       storage-driver = "overlay";
     })}";
   };
@@ -17,5 +18,5 @@
   # https://github.com/NixOS/nixpkgs/issues/68349
 }
 
-# data-root ="/run/media/bread/84d83a2f-1dce-43fe-89c9-83e8c0df271d/doraemon/pavandockershit";
+# 
 #
