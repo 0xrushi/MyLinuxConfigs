@@ -121,6 +121,11 @@
   enable = true;
 };
 
+nixpkgs.config.permittedInsecurePackages = [
+                "electron-24.8.6"
+              ];
+
+
 users.defaultUserShell = pkgs.zsh;
 
 }

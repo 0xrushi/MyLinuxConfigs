@@ -1,22 +1,21 @@
 { config, pkgs, ... }:
 
-  let
-    unstableTarball = fetchTarball https://releases.nixos.org/nixpkgs/nixpkgs-21.05pre286178.ff13163e3fd/nixexprs.tar.xz;
-  in
-  {
-    nixpkgs.config = {
-      packageOverrides = pkgs: {
-        unstable = import unstableTarball {
-          config = config.nixpkgs.config;
-        };
+let
+ unstableTarball = fetchTarball https://channels.nixos.org/nixos-unstable;
+in
+{
+ nixpkgs.config = {
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
       };
     };
-  
-  
-  # Allow Properietry packages
-  nixpkgs.config.allowUnfree = true;
+ };
 
-  environment.systemPackages = with pkgs; [
+ # Allow Proprietary packages
+ nixpkgs.config.allowUnfree = true;
+
+ environment.systemPackages = with pkgs; [
     wget vim htop feh nox git github-cli
     gnumake
     firefox
@@ -47,17 +46,14 @@
     libarchive
     go
     sshuttle
-  ];
+    python311Packages.keep
+ ];
 
-  # Some fonts
-   fonts.fonts = with pkgs; [
-     fira-code fira-code-symbols
-     cascadia-code
-     source-code-pro
-     twemoji-color-font
-   ];
+ # Some fonts
+ fonts.fonts = with pkgs; [
+    fira-code fira-code-symbols
+    cascadia-code
+    source-code-pro
+    twemoji-color-font
+ ];
 }
-
-# https://stackoverflow.com/questions/48831392/how-to-add-nixos-unstable-channel-declaratively-in-configuration-nix
-# https://channels.nixos.org/
-
