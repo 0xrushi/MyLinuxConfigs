@@ -29,7 +29,7 @@
     aria2 nodejs libclang gcc
     gnumake fzf vlc tdesktop ncftp
     capitaine-cursors fortune file gnome.nautilus
-    colorpicker smartmontools jq
+    # colorpicker smartmontools jq
     yt-dlp eva ueberzug tree qbittorrent
     unzip picom cmus conky fd #faster find alternative
     gromit-mpx pup progress

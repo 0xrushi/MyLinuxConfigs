@@ -1,100 +1,86 @@
 { config, pkgs, lib, ... }:
 
 {
-  # services that i need
-  services = {
-    openssh.enable = true;
-    
-    xserver = {
-      enable = true;
-      layout = "us";
-      libinput.enable = true; 				# touchpad support generally enabled by most display managers
-      displayManager.sddm.enable = true;  #minimal replacement for startx
-      desktopManager.plasma5.enable = true;
-      xkbVariant = "";
-      deviceSection = ''
-        Option "TearFree" "true"
-      '';
-      videoDrivers = [ "nvidia" ];
-    };
-
-    xrdp.enable = true;
-    xrdp.defaultWindowManager = "startplasma-x11";
-    
-
-    printing.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
-
-    };
-
-    # udev.extraRules = lib.mkMerge [
-    #   # autosuspend USB devices
-    #   ''ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"''
-    #   # autosuspend PCI devices
-    #   ''ACTION=="add", SUBSYSTEM=="pci", TEST=="power/control", ATTR{power/control}="auto"''
-    #   # disable Ethernet Wake-on-LAN
-    #   ''ACTION=="add", SUBSYSTEM=="net", NAME=="enp*", RUN+="${pkgs.ethtool}/sbin/ethtool -s $name wol d"''
-    # ];
-
-    # https://discourse.nixos.org/t/thinkpad-t470s-power-management/8141/4
-    # tlp = {
-    #   enable = true;
-    #   settings = {
-    #     CPU_SCALING_GOVERNOR_ON_BAT="schedutil";
-    #     CPU_SCALING_GOVERNOR_ON_AC="schedutil";
-
-    #     # The following prevents the battery from charging fully to
-    #     # preserve lifetime. Run `tlp fullcharge` to temporarily force
-    #     # full charge.
-    #     # https://linrunner.de/tlp/faq/battery.html#how-to-choose-good-battery-charge-thresholds
-    #     START_CHARGE_THRESH_BAT0=40;
-    #     STOP_CHARGE_THRESH_BAT0=50;
-
-    #     # 100 being the maximum, limit the speed of my CPU to reduce
-    #     # heat and increase battery usage:
-    #     CPU_MAX_PERF_ON_AC=100;
-    #     CPU_MAX_PERF_ON_BAT=70;
-    #     SOUND_POWER_SAVE_ON_AC=0;
-    #     SOUND_POWER_SAVE_ON_BAT=1;
-    #   };
-    # };
-
-    # getty = {
-    #   greetingLine = "";
-    #   helpLine = "";
-    #   autologinUser = "creator54";
-    # };
-    # thermald.enable = true;
-    # upower.enable = true;
-    # https://github.com/NixOS/nixos-hardware/blob/master/common/pc/laptop/hdd/default.nix
-    # Hard disk protection if the laptop falls:
-    # hdapsd.enable = lib.mkDefault true;
-    # printing.enable = true; 				# enables CUPS for printing
-
-    #actkbd = {
-    #  enable = true;
-    #  bindings = [  # light controls
-    #    { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
-    #    { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
-    #  ];
-    #};
-
-    #auto-cpufreq.enable = true;
-    #mongodb.enable = true;
-    gnome.gnome-keyring.enable = true; #fails to save if enabled via home-manager
+  # Enable and configure SSH service
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "no"; # Disable root login for security
+    passwordAuthentication = false; # Disable password authentication
   };
 
-  # systemd services which i dont like/use mostly cuz increases boot time and i find no issues not having them
+  # Enable and configure NTP service
+  services.ntp = {
+    enable = true;
+    servers = [ "pool.ntp.org" ]; # Use NTP pool servers
+  };
+
+  # Enable and configure CUPS printing service
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ]; # Use HPLIP drivers
+  };
+
+
+  # Enable and configure Avahi service for network discovery
+  services.avahi = {
+    enable = true;
+    publish = {
+      enable = true;
+      addresses = true;
+    };
+  };
+
+  # Enable and configure Samba service for file sharing
+  services.samba = {
+    enable = true;
+    shares = {
+      "public" = {
+        path = "/srv/samba/public";
+        browseable = true;
+        readOnly = false;
+        guestOk = true;
+      };
+    };
+  };
+
+  # Enable and configure X server
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    libinput.enable = true; # Touchpad support generally enabled by most display managers
+    displayManager.sddm.enable = true; # Minimal replacement for startx
+    desktopManager.plasma5.enable = true;
+    xkbVariant = "";
+    deviceSection = ''
+      Option "TearFree" "true"
+    '';
+    videoDrivers = [ "nvidia" ];
+  };
+
+  # Enable and configure XRDP service
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "startplasma-x11";
+  };
+
+  # Enable and configure Pipewire service
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    # jack.enable = true;
+
+    # Use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    # media-session.enable = true;
+  };
+
+  # Enable GNOME Keyring
+  services.gnome.gnome-keyring.enable = true; # Fails to save if enabled via home-manager
+
+  # Systemd services which I don't like/use mostly because they increase boot time and I find no issues not having them
   systemd.services = {
     systemd-udev-settle.enable = false;
     NetworkManager-wait-online.enable = false;
@@ -104,18 +90,7 @@
     lvm2-activation.enable = false;
   };
 
-  # stop spinning disks on idle
-  # https://www.reddit.com/r/NixOS/comments/751i5t/how_to_specify_that_hard_disks_should_spin_down/
-  #powerManagement = {
-  #  enable = true;
-  #  powertop.enable = true;
-  #  powerUpCommands = with pkgs;''
-  #      ${pkgs.hdparm}/sbin/hdparm -S 1 /dev/sda
-  #  '';
-  #};
-
-  # light works even without an xsession
+  # Light works even without an xsession
   programs.light.enable = true;
-  sound.enable = true;
 }
 
